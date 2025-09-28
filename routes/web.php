@@ -1,22 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GroupsController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/groups', function () {
-    return view('groupsList');
-});
+Route::get('/groups', [GroupsController::class, 'index']);
 
 Route::get('/groups/create', function () {
     return view('groupCreate');
 });
 
-Route::post('/groups', [GroupsController::class, 'store'])->name('group.store');
+Route::post('/groups', [GroupsController::class, 'store']);
 
-Route::get('/groups/{group}', function ($group) {
+/*Route::get('/groups/{group}', function ($group) {
     return view('studentsList');
 })->whereGroup($group);
 
@@ -28,4 +28,4 @@ Route::post('/groups/{group}/student', [StudentController::class, ['{group}', 's
 
 Route::get('/groups/{group}/students/{student}', function ($group, $student) {
     return view('student');
-})->whereGroup($group)->whereStudent($student);
+})->whereGroup($group)->whereStudent($student);*/

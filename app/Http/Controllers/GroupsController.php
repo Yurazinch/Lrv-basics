@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 class GroupsController extends Controller
@@ -11,7 +13,8 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        return $groups = DB::table('groups')->get();
+        $groups = DB::table('groups')->get();
+        return view('groups', ['groups' => $groups]);
     }
 
     /**
@@ -25,13 +28,13 @@ class GroupsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         DB::insert(
             'insert into groups (title, start_from, is_active) values (?, ?, ?)',
             $request
         );
-    }
+    }*/
 
     /**
      * Display the specified resource.
