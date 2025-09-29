@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class GroupsController extends Controller
 {
@@ -28,13 +29,25 @@ class GroupsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    /*public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
+        $title = $request->input('title');
+        $start_from = $request->input('start_from');
+        if(!$request->input('is_active'))
+        {
+            $is_active = 'Не активна';
+        } 
+        else
+        {
+            $is_active = 'Активна';
+        }
+        
         DB::insert(
             'insert into groups (title, start_from, is_active) values (?, ?, ?)',
-            $request
+            [$title, $start_from, $is_active]
         );
-    }*/
+        return redirect('/groups');
+    }
 
     /**
      * Display the specified resource.

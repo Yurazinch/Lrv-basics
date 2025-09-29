@@ -11,7 +11,7 @@ Route::get('/', function () {
 Route::get('/groups', [GroupsController::class, 'index']);
 
 Route::get('/groups/create', function () {
-    return view('groupCreate');
+    return view('groupcreate');
 });
 
 Route::post('/groups', [GroupsController::class, 'store']);

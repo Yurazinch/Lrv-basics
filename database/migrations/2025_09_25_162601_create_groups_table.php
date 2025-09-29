@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->default(''); // Название группы
             $table->date('start_from')->default('2025-01-01'); // Дата начала обучения
-            $table->boolean('is_active')->default(false); // Начала ли группа своё обучение
+            $table->string('is_active')->default('Не активна'); // Начала ли группа своё обучение
             $table->timestamps();
         });
     }
