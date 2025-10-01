@@ -2,19 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
-class StudentController extends Controller
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Group;
+use App\Models\Student;
+
+class StudentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(string $group_id)
+    public function index(Group $group)
     {
-        return $students = DB::select(
-            'select * from student where group_id = ?',
-            [$group_id]
+        $group_id = $group->id;
+        if($group) {
+            $students = DB::select(
+            'select name, surname from student where group_id = :group_id',
+            [$group]
         );
+        return view('students', ['students' => $students, 'group' => $group]);
+        }
+        else
+        {
+            return 'Такой группы нет!';
+        }
+        
     }
 
     /**
@@ -28,12 +43,16 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $group): RedirectResponse
     {
-        DB::insert(
+        $group_id = $request->input('group_id');
+        $surname = $request->input('surname');
+        $name = $request->input('name');
+        DB::insert(            
             'insert into student (group_id, surname, name) values (?, ?, ?)',
-            $request
+            [$group_id, $surname, $name]
         );
+        return redirect('/groups/{$group}');
     }
 
     /**

@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroupsController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentsController;
+use App\Models\Group;
+use App\Models\Student;
 
 Route::get('/', function () {
     return view('index');
@@ -16,16 +18,12 @@ Route::get('/groups/create', function () {
 
 Route::post('/groups', [GroupsController::class, 'store']);
 
-/*Route::get('/groups/{group}', function ($group) {
-    return view('studentsList');
-})->whereGroup($group);
+Route::get('/groups/{group}', [StudentsController::class, 'index']);
 
-Route::get('/groups/{group}/student/create', function ($group) {
-    return view('studentCreate');
-})->whereGroup($group);
+Route::get('/groups/{group}/students/create', function ($group) {
+    return view('studentcreate', ['group' => $group]);
+})->name('student.create');
 
-Route::post('/groups/{group}/student', [StudentController::class, ['{group}', 'store']])->name('student.store');
+Route::post('/groups/{group}/students', [StudentController::class, 'store'])->name('student.store');
 
-Route::get('/groups/{group}/students/{student}', function ($group, $student) {
-    return view('student');
-})->whereGroup($group)->whereStudent($student);*/
+Route::get('/groups/{group}/students/{student}', [StudentController::class, ['{group}', '{student}', 'show']])->name('studet.show');
