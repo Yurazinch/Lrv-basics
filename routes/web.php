@@ -18,12 +18,12 @@ Route::get('/groups/create', function () {
 
 Route::post('/groups', [GroupsController::class, 'store']);
 
-Route::get('/groups/{group}', [StudentsController::class, 'index']);
+Route::get('/groups/{group}', [StudentsController::class, 'index'])->name('student.index');
 
 Route::get('/groups/{group}/students/create', function ($group) {
     return view('studentcreate', ['group' => $group]);
 })->name('student.create');
 
-Route::post('/groups/{group}/students', [StudentController::class, 'store'])->name('student.store');
+Route::post('/groups/{group}/students', [StudentsController::class, 'store'])->name('student.store');
 
 Route::get('/groups/{group}/students/{student}', [StudentController::class, ['{group}', '{student}', 'show']])->name('studet.show');

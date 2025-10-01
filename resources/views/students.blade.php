@@ -5,18 +5,14 @@
     </head>
     <body>
         <h1>Список студентов группы</h1>
-        @if(empty($students) > 0) 
+        @if(count($students) > 0) 
             <ul>
-                @foreach($students as $person) 
-                    <li>
-                        {{$person->id}},
-                        группа {{$person->group_id}},
-                        {{$person->name}} {{$person->surname}}
-                    </li>
+                @foreach($students as $student) 
+                    <li>{{$student->id}}, группа {{$student->group_id}}, {{$student->surname}} {{$student->name}}</li>
                 @endforeach
             </ul>
         @else       
-            <p>Группа не заполнена</p>       
+            <p>Группа не заполнена</p>    
         @endif
         <a href="{{ route('student.create', [$group]) }}"><button>Добавить студента</button></a>
         <a href="/groups"><button>К списку групп</button></a>

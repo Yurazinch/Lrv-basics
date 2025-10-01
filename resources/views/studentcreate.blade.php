@@ -12,6 +12,6 @@
             <p>Фамилия: <input type="text" name="surname" /></p>
             <p><input type="submit" value="Добавить" />
         </form>
-        <a href="/groups">К списку групп</a>
+        <a href="/groups/{{ $group }}">Вернуться в группу</a>
     </body>
 </html>

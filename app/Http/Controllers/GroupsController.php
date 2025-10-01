@@ -12,7 +12,7 @@ class GroupsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $groups = DB::table('groups')->get();
         return view('groups', ['groups' => $groups]);

@@ -15,27 +15,17 @@ class StudentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Group $group)
+    public function index($group): View
     {
-        $group_id = $group->id;
-        if($group) {
-            $students = DB::select(
-            'select name, surname from student where group_id = :group_id',
-            [$group]
-        );
-        return view('students', ['students' => $students, 'group' => $group]);
-        }
-        else
-        {
-            return 'Такой группы нет!';
-        }
+        $students = DB::table('student')->where('group_id', $group)->get();
+        return view('students', ['group' => $group, 'students' => $students]);    
         
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         //
     }
@@ -43,7 +33,7 @@ class StudentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $group): RedirectResponse
+    public function store(Request $request, $group):RedirectResponse
     {
         $group_id = $request->input('group_id');
         $surname = $request->input('surname');
@@ -52,7 +42,7 @@ class StudentsController extends Controller
             'insert into student (group_id, surname, name) values (?, ?, ?)',
             [$group_id, $surname, $name]
         );
-        return redirect('/groups/{$group}');
+        return redirect()->route('student.index', ['group' => $group]);
     }
 
     /**
