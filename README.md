@@ -1,3 +1,14 @@
+# Ответы на вопросы №
+
+*1. Для чего нужны миграции? Какую роль они играют или какую проблему решают?*
+
+Миграция - это отдельный файл, определяющий создание и откат таблиц c именем и структурой, легкая смена используемых типов баз данных без изменения структуры таблиц.
+
+*2. Для чего нужен Eloquent ORM?*
+
+Eloquent ORM обеспечивает единый интерфейс для взаимодействия с несколькими типами баз данных.
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
