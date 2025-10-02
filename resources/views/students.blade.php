@@ -8,7 +8,7 @@
         @if(count($students) > 0) 
             <ul>
                 @foreach($students as $student) 
-                    <li>{{$student->id}}, группа {{$student->group_id}}, {{$student->surname}} {{$student->name}}</li>
+                    <li>{{$student->id}}, группа {{$student->group_id}}, <a href="{{ route('student.show', [$group, $student->id]) }}">{{$student->surname}} {{$student->name}}</a></li>
                 @endforeach
             </ul>
         @else       

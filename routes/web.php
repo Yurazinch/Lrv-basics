@@ -26,4 +26,4 @@ Route::get('/groups/{group}/students/create', function ($group) {
 
 Route::post('/groups/{group}/students', [StudentsController::class, 'store'])->name('student.store');
 
-Route::get('/groups/{group}/students/{student}', [StudentController::class, ['{group}', '{student}', 'show']])->name('studet.show');
+Route::get('/groups/{group}/students/{student}', [StudentsController::class, 'show'])->name('student.show');

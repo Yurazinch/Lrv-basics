@@ -48,12 +48,21 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($group, $student): View
     {
-        return $student = DB::select(
-            'select * from student where id = ?',
-            [$id]
-        );
+        $group = DB::table('groups')->where('id', $group)->get();
+        $gr = [];
+        foreach($group as $key => $value)
+        {
+            $gr = [$key => $value];
+        }
+        $student = DB::table('student')->where('id', $student)->get(); 
+        $st = [];
+        foreach($student as $key => $value)
+        {
+            $st = [$key => $value];
+        }     
+        return view('st', ['gr' => $gr, 'st' => $st]);
     }
 
     /**
